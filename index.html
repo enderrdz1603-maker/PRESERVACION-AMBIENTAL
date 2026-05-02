@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposición Ambiental | Liceo Monseñor Bernabé Vivas</title>
+    <meta name="description" content="Investigación académica profunda sobre la preservación del medio ambiente: Desde la escala global hasta el Municipio Córdoba. Material de apoyo para exposición.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#064e3b',
+                        secondary: '#10b981',
+                        accent: '#d1fae5',
+                        dark: '#111827',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .focus-mode-active #focus-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .focus-mode-active section, .focus-mode-active [data-eco-tip] {
+            position: relative;
+            z-index: 60;
+            transition: all 0.5s ease;
+        }
+        #focus-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 55;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .author-name {
+            transition: all 0.3s ease;
+        }
+        .author-name:hover {
+            color: #10b981;
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-dark font-sans overflow-x-hidden">
+    <nav class="fixed w-full z-50 transition-all duration-300 py-6" id="navbar">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="1.png" alt="Logo Liceo" class="w-12 h-12 object-contain rounded-lg shadow-md border-2 border-white/20 bg-slate-900">
+                <div class="flex flex-col">
+                    <span class="text-sm md:text-lg font-heading font-bold tracking-tight text-white mix-blend-difference leading-none">LICEO MONSEÑOR BERNABÉ VIVAS</span>
+                    <span class="text-[10px] uppercase tracking-widest text-white/60 mix-blend-difference font-semibold">Material de Exposición Académica</span>
+                </div>
+            </div>
+            <a href="#global" class="bg-secondary hover:bg-primary text-white px-4 md:px-6 py-2 rounded-full font-semibold text-xs md:text-sm transition-all shadow-xl">
+                Iniciar Recorrido
+            </a>
+        </div>
+    </nav>
+    <header class="relative h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+        <div class="absolute inset-0 z-0 bg-slate-900">
+            <img src="https://picsum.photos/id/10/1920/1080" alt="Naturaleza" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-slate-50"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-4xl md:text-7xl font-heading font-bold text-white mb-6 leading-tight opacity-0 translate-y-10 transition-all duration-1000" id="hero-title">
+                Crisis y Preservación: <br><span class="text-secondary">Un Análisis Multinivel</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-slate-100 mb-10 max-w-3xl mx-auto font-light opacity-0 transition-all duration-1000 delay-300" id="hero-subtitle">
+                Desde los grandes biomas del planeta hasta la realidad de nuestro entorno en el Municipio Córdoba. Una investigación académica profunda.
+            </p>
+            <div class="opacity-0 transition-all duration-1000 delay-500" id="hero-btns">
+                <a href="#global" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-100 transition-all shadow-2xl inline-block">Comenzar Exposición</a>
+            </div>
+        </div>
+    </header>
+    <section id="global" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-secondary font-bold uppercase tracking-[0.3em] text-sm">Escala 01</span>
+                    <h2 class="text-4xl font-heading font-bold text-primary mt-2">Desafíos del Contexto Mundial</h2>
+                    <p class="text-slate-500 mt-4">La crisis climática global se manifiesta a través de procesos sistémicos que amenazan la estabilidad de la vida.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="accordion-item bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex justify-between items-center group">
+                            <span class="text-xl font-bold text-dark group-hover:text-secondary transition-colors">Calentamiento Global y Gases de Efecto Invernadero</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 accordion-icon transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6 pt-0 text-slate-500 leading-relaxed border-t border-slate-50">
+                                <p class="mb-4">El aumento incesante de CO2 y Metano ha provocado que la temperatura media global suba más de 1.1°C respecto a la era preindustrial. Esto altera los patrones de lluvia, intensifica sequías y provoca eventos climáticos extremos con mayor frecuencia.</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm">
+                                    <li>Intensificación del fenómeno de El Niño/La Niña.</li>
+                                    <li>Desertificación de tierras anteriormente fértiles.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex justify-between items-center group">
+                            <span class="text-xl font-bold text-dark group-hover:text-secondary transition-colors">Deshielo de los Polos y Nivel del Mar</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 accordion-icon transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6 pt-0 text-slate-500 leading-relaxed border-t border-slate-50">
+                                <p>La pérdida de glaciares en la Antártida y Groenlandia no solo eleva el nivel del mar amenazando ciudades costeras, sino que altera la salinidad y las corrientes marinas que regulan el clima global. La liberación de metano atrapado en el permafrost crea un bucle de retroalimentación peligrosa.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex justify-between items-center group">
+                            <span class="text-xl font-bold text-dark group-hover:text-secondary transition-colors">Crisis de la Biodiversidad (Sexta Extinción)</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 accordion-icon transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6 pt-0 text-slate-500 leading-relaxed border-t border-slate-50">
+                                <p>Estamos perdiendo especies a un ritmo 1,000 veces superior al natural. La fragmentación de hábitats y el tráfico de especies destruyen los "servicios ecosistémicos" (polinización, purificación de agua) de los que depende la humanidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all duration-300">
+                        <button class="w-full p-6 text-left flex justify-between items-center group">
+                            <span class="text-xl font-bold text-dark group-hover:text-secondary transition-colors">Contaminación y Acidificación de Océanos</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 accordion-icon transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-6 pt-0 text-slate-500 leading-relaxed border-t border-slate-50">
+                                <p>Los océanos absorben el 30% del CO2 humano, volviéndose más ácidos y destruyendo los arrecifes de coral. Sumado a las islas de plástico, esto compromete la mayor fuente de oxígeno y alimento del planeta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container mx-auto px-6 py-4 opacity-0 translate-y-10 transition-all duration-1000" data-eco-tip>
+        <div class="bg-emerald-50/80 backdrop-blur-md border border-emerald-100 rounded-[2rem] p-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="w-16 h-16 bg-emerald-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-emerald-200/50">
+                <span class="text-3xl">🌳</span>
+            </div>
+            <div>
+                <h4 class="text-emerald-800 font-bold uppercase tracking-widest text-xs mb-1">Eco-Tip: Preservación General</h4>
+                <p class="text-emerald-700/80 text-sm md:text-base leading-relaxed">
+                    <strong>¿Sabías qué?</strong> Desconectar los aparatos electrónicos que no usas reduce la demanda de energía global y disminuye significativamente las emisiones de carbono indirectas.
+                </p>
+            </div>
+        </div>
+    </div>
+    <section id="nacional" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-secondary font-bold uppercase tracking-[0.3em] text-sm">Escala 02</span>
+                <h2 class="text-4xl font-heading font-bold text-primary mt-2">Emergencia Ambiental en Venezuela</h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">Nuestro país posee una biodiversidad única que enfrenta amenazas antropogénicas severas e inmediatas.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 h-[400px] bg-slate-900">
+                    <img src="https://picsum.photos/id/28/800/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Arco Minero">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <h3 class="text-2xl font-heading font-bold text-white mb-2">Arco Minero del Orinoco</h3>
+                        <p class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"><strong>Causa:</strong> Minería ilegal y falta de supervisión. <br><strong>Consecuencia:</strong> Deforestación masiva de selva virgen y contaminación por mercurio de las cuencas del Caroní y Orinoco.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 h-[400px] bg-slate-900">
+                    <img src="https://picsum.photos/id/11/800/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Derrame petrolero">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <h3 class="text-2xl font-heading font-bold text-white mb-2">Derrames Petroleros</h3>
+                        <p class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"><strong>Causa:</strong> Falta de mantenimiento en infraestructuras obsoletas. <br><strong>Consecuencia:</strong> Destrucción de ecosistemas marinos y costas en Falcón y el Lago de Maracaibo, afectando la pesca artesanal.</p>
+                    </div>
+                </div>
+                <div class="group relative rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 h-[400px] bg-slate-900">
+                    <img src="https://picsum.photos/id/12/800/600" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ecosistemas costeros">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <h3 class="text-2xl font-heading font-bold text-white mb-2">Pérdida de Manglares</h3>
+                        <p class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"><strong>Causa:</strong> Urbanismo descontrolado y contaminación por plásticos. <br><strong>Consecuencia:</strong> Desaparición de barreras naturales contra huracanes y viveros naturales de vida marina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container mx-auto px-6 py-4 opacity-0 translate-y-10 transition-all duration-1000" data-eco-tip>
+        <div class="bg-amber-50/80 backdrop-blur-md border border-amber-100 rounded-[2rem] p-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="w-16 h-16 bg-amber-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-amber-200/50">
+                <span class="text-3xl">🛡️</span>
+            </div>
+            <div>
+                <h4 class="text-amber-800 font-bold uppercase tracking-widest text-xs mb-1">Eco-Tip: Prevención en los Andes</h4>
+                <p class="text-amber-700/80 text-sm md:text-base leading-relaxed">
+                    <strong>Prevención en nuestras montañas:</strong> Evitar fogatas y no dejar residuos de vidrio en zonas boscosas previene los incendios forestales que azotan nuestros Andes cada temporada de sequía.
+                </p>
+            </div>
+        </div>
+    </div>
+    <section id="tachira" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-secondary font-bold uppercase tracking-[0.3em] text-sm">Escala 03</span>
+                    <h2 class="text-4xl font-heading font-bold text-primary mt-2">Realidad Regional: Estado Táchira</h2>
+                </div>
+                <div class="bg-white rounded-[3rem] shadow-xl overflow-hidden border border-slate-100">
+                    <div class="flex flex-col md:flex-row border-b border-slate-100">
+                        <button class="tab-btn active px-8 py-6 text-sm font-bold uppercase tracking-widest text-slate-400 border-b-4 border-transparent hover:text-primary transition-all flex-1" data-tab="cuencas">Deforestación de Cuencas</button>
+                        <button class="tab-btn px-8 py-6 text-sm font-bold uppercase tracking-widest text-slate-400 border-b-4 border-transparent hover:text-primary transition-all flex-1" data-tab="agricultura">Agricultura de Montaña</button>
+                        <button class="tab-btn px-8 py-6 text-sm font-bold uppercase tracking-widest text-slate-400 border-b-4 border-transparent hover:text-primary transition-all flex-1" data-tab="residuos">Gestión de Residuos</button>
+                    </div>
+                    <div class="p-10">
+                        <div id="cuencas" class="tab-content active">
+                            <h3 class="text-2xl font-bold text-dark mb-4">La Amenaza a los Ríos Andinos</h3>
+                            <p class="text-slate-500 leading-relaxed">La tala en las cabeceras de los ríos Torbes, Quinimarí y Uribante ha reducido drásticamente los caudales. Esto compromete no solo el consumo de agua potable, sino también la generación de energía hidroeléctrica regional.</p>
+                        </div>
+                        <div id="agricultura" class="tab-content">
+                            <h3 class="text-2xl font-bold text-dark mb-4">Impacto de la Frontera Agrícola</h3>
+                            <p class="text-slate-500 leading-relaxed">La expansión de cultivos en pendientes pronunciadas sin técnicas de conservación (terrazas) está provocando una erosión severa. El uso excesivo de agroquímicos en zonas como El Cobre y La Grita contamina las napas freáticas.</p>
+                        </div>
+                        <div id="residuos" class="tab-content">
+                            <h3 class="text-2xl font-bold text-dark mb-4">Crisis en San Josecito</h3>
+                            <p class="text-slate-500 leading-relaxed">El colapso del vertedero regional de San Josecito genera lixiviados que contaminan suelos y acuíferos. La falta de una cultura de reciclaje en San Cristóbal y municipios aledaños agrava la acumulación de plásticos en las quebradas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="cordoba" class="py-24 bg-primary text-white overflow-hidden relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-16">
+                    <span class="text-secondary font-bold uppercase tracking-[0.3em] text-sm">Escala 04 (Local)</span>
+                    <h2 class="text-4xl md:text-6xl font-heading font-bold mt-2">Municipio Córdoba y Santa Ana</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="bg-white/5 backdrop-blur-xl rounded-[3rem] p-10 border border-white/10 bg-slate-900/40">
+                        <h3 class="text-2xl font-heading font-bold text-secondary mb-6">El Río Quinimarí en Crisis</h3>
+                        <p class="text-emerald-100/80 leading-relaxed mb-6">Nuestra principal fuente hídrica enfrenta un vertido constante de aguas servidas y desechos domésticos de la población de Santa Ana. La sedimentación por la deforestación rural ha vuelto el lecho del río más propenso a crecidas peligrosas.</p>
+                        <div class="bg-white/10 rounded-2xl p-6">
+                            <h4 class="font-bold mb-2">Dato Crítico:</h4>
+                            <p class="text-sm text-white/60">La calidad del agua ha disminuido un 40% en los últimos 10 años, afectando la salud de las comunidades ribereñas.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-xl rounded-[3rem] p-10 border border-white/10 bg-slate-900/40">
+                        <h3 class="text-2xl font-heading font-bold text-secondary mb-6">Tala Indiscriminada Local</h3>
+                        <p class="text-emerald-100/80 leading-relaxed mb-6">La expansión de potreros para ganadería en las zonas altas de Córdoba ha destruido bosques de galería esenciales. Esto ha provocado que el microclima de Santa Ana se vuelva más cálido y que las nacientes de agua locales desaparezcan.</p>
+                         <ul class="space-y-4">
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-secondary rounded-full"></span>
+                                <span class="text-sm">Pérdida de corredores biológicos.</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="w-2 h-2 bg-secondary rounded-full"></span>
+                                <span class="text-sm">Aumento de deslizamientos en zonas de riesgo.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold text-primary mb-4">Estrategias de Protección Local</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">Propuestas concretas para asegurar la sostenibilidad del Municipio Córdoba y Santa Ana del Táchira.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-7.714 2.143L11 21l-2.286-6.857L1 12l7.714-2.143L11 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">Ribera del Quinimarí</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed italic">No basta con limpiar; es vital reforestar las riberas con especies nativas para estabilizar el suelo y filtrar sedimentos antes de que lleguen al cauce.</p>
+                </div>
+                <div class="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-secondary text-white rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">Gestión de Residuos</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed italic">Proponemos sistemas de reciclaje comunitario en las aldeas y el casco de Santa Ana para eliminar los vertederos improvisados que contaminan nuestras montañas.</p>
+                </div>
+                <div class="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.757c1.27 0 2.539.6 3.443 1.636a4.5 4.5 0 010 5.728C21.296 18.4 20.027 19 18.757 19H14M4 10h4.757c1.27 0 2.539.6 3.443 1.636a4.5 4.5 0 010 5.728C6.704 18.4 7.973 19 9.243 19H4m0-9V9a5 5 0 015-5h6a5 5 0 015 5v1" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-4">Resguardo Biológico</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed italic">Protección de la fauna silvestre y prohibición estricta de la quema indiscriminada en zonas altas para preservar los nichos ecológicos andinos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container mx-auto px-6 py-4 opacity-0 translate-y-10 transition-all duration-1000" data-eco-tip>
+        <div class="bg-blue-50/80 backdrop-blur-md border border-blue-100 rounded-[2rem] p-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 shadow-lg hover:shadow-xl transition-all">
+            <div class="w-16 h-16 bg-blue-500 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-blue-200/50">
+                <span class="text-3xl">💧</span>
+            </div>
+            <div>
+                <h4 class="text-blue-800 font-bold uppercase tracking-widest text-xs mb-1">Eco-Tip: Cuidado Vital del Agua</h4>
+                <p class="text-blue-700/80 text-sm md:text-base leading-relaxed">
+                    <strong>Cuidemos nuestro río Quinimarí:</strong> No arrojar aceite por el lavaplatos y reducir el uso de plásticos de un solo uso salva nuestras fuentes hídricas locales en Santa Ana.
+                </p>
+            </div>
+        </div>
+    </div>
+    <section class="py-24 bg-slate-50 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold text-primary mb-4">Nuestra Herencia Natural: Un viaje al pasado</h2>
+                <div class="w-20 h-1.5 bg-secondary mx-auto rounded-full mt-6"></div>
+            </div>
+            <div class="relative max-w-5xl mx-auto py-12">
+                <div class="absolute left-1/2 -translate-x-1/2 h-full w-1 bg-slate-200 hidden md:block"></div>
+                <div class="space-y-12">
+                    <div class="relative flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                             <div class="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all relative">
+                                <span class="text-secondary font-bold text-xs uppercase mb-2 block tracking-widest">El Pasado</span>
+                                <h3 class="text-2xl font-heading font-bold text-dark mb-4">El Valle del Quinimarí</h3>
+                                <p class="text-slate-500 text-sm leading-relaxed">Santa Ana se fundó en un refugio de biodiversidad. Bosques densos y aguas cristalinas sustentaban una vida agrícola en armonía con el entorno andino.</p>
+                             </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-primary rounded-full border-4 border-white z-10 hidden md:block"></div>
+                        <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+                            <img src="https://picsum.photos/id/10/400/300" class="rounded-[2rem] w-full h-48 object-cover grayscale opacity-60" alt="Pasado">
+                        </div>
+                    </div>
+                    <div class="relative flex flex-col md:flex-row-reverse items-center">
+                        <div class="md:w-1/2 md:pl-12 md:text-left">
+                             <div class="p-8 rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all relative">
+                                <span class="text-secondary font-bold text-xs uppercase mb-2 block tracking-widest">Evolución</span>
+                                <h3 class="text-2xl font-heading font-bold text-dark mb-4">El Café y la Sombra</h3>
+                                <p class="text-slate-500 text-sm leading-relaxed">La caficultura tradicional de Córdoba fue el gran aliado del medio ambiente. Árboles bajo sombra mantenían el equilibrio hídrico y la salud del suelo que hoy debemos recuperar.</p>
+                             </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-primary rounded-full border-4 border-white z-10 hidden md:block"></div>
+                        <div class="md:w-1/2 md:pr-12 mt-6 md:mt-0">
+                            <img src="https://picsum.photos/id/324/400/300" class="rounded-[2rem] w-full h-48 object-cover" alt="Cafetales">
+                        </div>
+                    </div>
+                    <div class="relative flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                             <div class="p-8 rounded-[2.5rem] bg-primary text-white shadow-xl relative">
+                                <span class="text-secondary font-bold text-xs uppercase mb-2 block tracking-widest">El Presente</span>
+                                <h3 class="text-2xl font-heading font-bold mb-4">El Desafío Actual</h3>
+                                <p class="text-emerald-100/80 text-sm leading-relaxed">El crecimiento urbano acelerado nos exige recuperar la conciencia ecológica de nuestros fundadores. Es tiempo de reconciliarnos con nuestra tierra.</p>
+                             </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-secondary rounded-full border-4 border-white z-10 hidden md:block"></div>
+                        <div class="md:w-1/2 md:pl-12 mt-6 md:mt-0">
+                            <img src="https://picsum.photos/id/15/400/300" class="rounded-[2rem] w-full h-48 object-cover" alt="Presente">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-dark text-white overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold text-white mb-4">Cifras que Duelen y Motivan</h2>
+                <p class="text-slate-400">Impacto medible en nuestro Municipio Córdoba</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div>
+                    <div class="text-6xl font-bold text-secondary mb-2" data-count="15000">0</div>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-bold">Litros de agua del Quinimarí protegidos/día</p>
+                </div>
+                <div>
+                    <div class="text-6xl font-bold text-secondary mb-2" data-count="2500">0</div>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-bold">Árboles necesarios para Santa Ana</p>
+                </div>
+                <div>
+                    <div class="text-6xl font-bold text-secondary mb-2" data-count="365">0</div>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-bold">Días para cambiar el futuro local</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="soluciones" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold text-primary">Conclusiones y Plan de Acción</h2>
+                <p class="text-slate-500 mt-4">Soluciones reales justificadas para cada nivel geográfico.</p>
+            </div>
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <button class="sol-btn active bg-slate-100 text-slate-500 px-6 py-3 rounded-2xl font-bold transition-all" data-sol="sol-global">Globales</button>
+                    <button class="sol-btn bg-slate-100 text-slate-500 px-6 py-3 rounded-2xl font-bold transition-all" data-sol="sol-nacional">Venezuela</button>
+                    <button class="sol-btn bg-slate-100 text-slate-500 px-6 py-3 rounded-2xl font-bold transition-all" data-sol="sol-tachira">Táchira</button>
+                    <button class="sol-btn bg-slate-100 text-slate-500 px-6 py-3 rounded-2xl font-bold transition-all" data-sol="sol-cordoba">Córdoba</button>
+                </div>
+                <div id="sol-content" class="min-h-[400px]">
+                    <div id="sol-global" class="sol-panel active grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Transición Energética</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Reducir drásticamente los GEI es la única forma de frenar el calentamiento global antes del punto de no retorno.</p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Acuerdos Internacionales</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: El clima no conoce fronteras; la cooperación global asegura que las potencias industriales también cumplan metas ecológicas.</p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Economía Circular</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Eliminar el concepto de "residuo" reduce la presión sobre la extracción de materias primas y la contaminación oceánica.</p>
+                        </div>
+                    </div>
+                    <div id="sol-nacional" class="sol-panel hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Leyes Ambientales Estrictas</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Frenar la minería ilegal en el sur requiere voluntad política y vigilancia satelital de las ABRAE.</p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Restauración de Manglares</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Recuperar las barreras naturales costeras protege la biodiversidad y mitiga el impacto de marejadas.</p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Saneamiento Petrolero</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Invertir en mantenimiento evita desastres ecológicos irreversibles en nuestras costas más productivas.</p>
+                        </div>
+                    </div>
+                    <div id="sol-tachira" class="sol-panel hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Reforestación de Páramos</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Los páramos son "fábricas de agua"; su restauración garantiza el suministro para todo el estado.</p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Agricultura Sostenible</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: El uso de terrazas y control biológico de plagas evita la erosión y la contaminación de napas subterráneas.</p>
+                        </div>
+                        <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                            <h4 class="font-bold text-primary mb-4">Clasificación en Origen</h4>
+                            <p class="text-sm text-slate-500 italic">Por qué: Separar plásticos y orgánicos en casa reduce en un 60% la carga del vertedero de San Josecito.</p>
+                        </div>
+                    </div>
+                    <div id="sol-cordoba" class="sol-panel hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-8 bg-secondary text-white rounded-3xl">
+                            <h4 class="font-bold mb-4">Saneamiento del Quinimarí</h4>
+                            <p class="text-sm text-white/80 italic">Por qué: Implementar trampas de sólidos y educación ribereña es vital para devolver la salud al río de Santa Ana.</p>
+                        </div>
+                        <div class="p-8 bg-secondary text-white rounded-3xl">
+                            <h4 class="font-bold mb-4">Ordenanza contra la Tala</h4>
+                            <p class="text-sm text-white/80 italic">Por qué: Legislar localmente con multas severas y programas de incentivos para guardabosques locales protegerá los cerros.</p>
+                        </div>
+                        <div class="p-8 bg-secondary text-white rounded-3xl">
+                            <h4 class="font-bold mb-4">Brigadas Escolares</h4>
+                            <p class="text-sm text-white/80 italic">Por qué: Formar a los estudiantes del liceo como agentes de cambio asegura que la conciencia ambiental perdure en el municipio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="py-20 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="flex items-center space-x-4">
+                    <img src="1.png" alt="Logo Liceo" class="w-16 h-16 object-contain rounded-full border-4 border-slate-50 bg-slate-900">
+                    <div>
+                        <h5 class="text-lg font-heading font-bold text-primary leading-none mb-1">LICEO MONSEÑOR BERNABÉ VIVAS</h5>
+                        <p class="text-slate-400 text-xs">Santa Ana del Táchira, Venezuela</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="text-center md:text-right">
+                        <p class="text-slate-500 font-bold mb-2 uppercase tracking-widest text-[10px]">Investigadoras:</p>
+                        <div class="flex flex-wrap justify-center md:justify-end gap-x-4 mb-4">
+                            <span class="author-name text-dark font-medium text-sm cursor-default">Ámbar Guzmán</span>
+                            <span class="author-name text-dark font-medium text-sm cursor-default">Darianny Olejua</span>
+                            <span class="author-name text-dark font-medium text-sm cursor-default">María Useche</span>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-dark font-bold text-xs uppercase tracking-widest">5 Año sección C</p>
+                            <p class="text-secondary font-bold text-[10px] uppercase tracking-[0.2em]">Bachiller en ciencia y tecnología</p>
+                        </div>
+                        <p class="text-slate-300 text-[10px] mt-6 font-bold uppercase tracking-widest">AÑO ACADÉMICO 2026</p>
+                    </div>
+                    <div class="w-24 h-24 bg-slate-100 rounded-xl flex items-center justify-center p-2 border-2 border-slate-50">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/enderrdz1603-maker/PRESERVACION-AMBIENTAL" alt="QR Code" class="w-full h-full opacity-60">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center text-[10px] text-slate-300 uppercase tracking-widest">
+                Escanea el código para llevar la investigación en tu móvil
+            </div>
+        </div>
+    </footer>
+    <div id="focus-overlay"></div>
+    <button id="toggle-focus" class="fixed bottom-6 left-6 z-[100] bg-dark text-white px-6 py-3 rounded-full font-bold shadow-2xl hover:scale-105 transition-all text-sm flex items-center space-x-2">
+        <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+        <span>Modo Enfoque</span>
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>
